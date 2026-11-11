@@ -117,7 +117,7 @@ describe("ThemeToggle", () => {
     })) as unknown as typeof window.matchMedia;
     render(
       wrap(
-        <ThemeProvider attribute="data-theme" defaultTheme="light" enableSystem>
+        <ThemeProvider attribute="data-theme" defaultTheme="light" enableSystem={false}>
           <ThemeToggle />
         </ThemeProvider>,
       ),

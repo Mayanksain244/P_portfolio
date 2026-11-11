@@ -141,6 +141,7 @@ See `.env.example`.
 - **Gotcha:** `npm run build` overwrites `.next`, which breaks a running `npm run dev`. Stop the dev server before building, or have subagents use `tsc --noEmit` instead.
 
 ## Decisions log
+- 2026-11-11: At the owner's request the site **defaults to the light theme** (`defaultTheme="light"`, `enableSystem={false}`) on both the public site and the admin. A visitor's toggle choice is still saved in localStorage.
 - 2026-11-11 (Phase 4 design):
   - **Admin is English-only at `/admin`, with its own root layout.** It uses a fixed username plus a bcrypt hash and a jose JWT cookie (8h, `sameSite` strict). The middleware guards the pages, and **every server action calls `requireAdmin()`**.
   - **Login rate limit:** stored in the Supabase `rate_limits` table (migration 0002), not in memory. It allows 5 failures per 15 minutes per hashed IP, and Phase 5 reuses it for the contact form.

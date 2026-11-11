@@ -95,8 +95,8 @@ export default async function LocaleLayout({
         </noscript>
         <ThemeProvider
           attribute="data-theme"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
+          enableSystem={false}
           disableTransitionOnChange
         >
         <NextIntlClientProvider>

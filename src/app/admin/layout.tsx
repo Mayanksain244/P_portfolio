@@ -28,7 +28,7 @@ export default function AdminRootLayout({ children }: { children: React.ReactNod
       className={`${fraunces.variable} ${inter.variable} ${devanagari.variable}`}
     >
       <body className="min-h-screen antialiased">
-        <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="data-theme" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
           {/* ThemeToggle reads its labels from the "theme" namespace. */}
           <NextIntlClientProvider locale="en" messages={{ theme: en.theme }}>
             <ToastProvider>{children}</ToastProvider>
