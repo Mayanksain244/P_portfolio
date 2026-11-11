@@ -1,7 +1,11 @@
 # TODO
 
 ## Doing
-- [ ] Phase 3: code done (40 tests pass). PM reviewed the SQL. **Waiting on the owner to run `supabase/migrations/0001_init.sql` in the SQL Editor**, then a smoke test with a temporary album.
+- [x] Phase 3 DB is live (2026-11-11). The owner ran 0001.
+  - `scripts/smoke-gallery.mjs` passed 22/22: pages, bucket URLs, RLS (no public writes, `messages` hidden, unpublished albums hidden), and cleanup.
+  - Lightbox focus trap and swipe still haven't been checked in a real browser; do that in Phase 7 QA.
+- [ ] Owner: deploying the first draft to Vercel (publishable env vars only, no secret key yet)
+- [ ] Phase 4: Admin panel (Sonnet subagent)
 - [x] Hero portrait, About data sheet and OG image: reviewed in the browser on 2026-11-11 (desktop, 375px, EN and HI, light and dark)
 - [x] Hydration and 500 check: the errors were stale (rounding was already in place, and the 500 was a one-off from a dev-server hot reload). Added a rounding test.
 - [ ] Add a favicon/app icon built from the Monogram (`src/app/icon.svg`); /favicon.ico currently 404s
