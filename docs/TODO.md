@@ -15,7 +15,8 @@
   - `SocialLinks`, the favicon, and `hash-password --write`
 - [x] Gmail App Password set in `.env.local` (2026-11-11). SMTP login worked and a real test email was accepted for `CONTACT_TO`.
   - [x] The owner confirmed the test email arrived (2026-11-11).
-  - [ ] Owner: set the same three vars in Vercel and redeploy.
+  - [x] The owner set the same three vars in Vercel and redeployed (2026-11-11).
+  - [ ] Live test: send one message through the contact form on the Vercel URL and confirm the email arrives (Phase 7 QA).
   - [x] Mailer now strips whitespace from `GMAIL_APP_PASSWORD`, because Google shows it in four groups. Added `mailer.test.ts`; 116 tests pass.
 - [ ] Owner: social media links, to add to `profile.social`
 - [x] Local admin password set (2026-11-11). It's only 6 digits, so **choose a stronger one before going live**.
