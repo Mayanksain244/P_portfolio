@@ -25,7 +25,7 @@ export function recipients(raw = process.env.CONTACT_TO): string[] {
  */
 export async function sendContactMail(input: MailInput): Promise<"sent" | "skipped"> {
   const user = process.env.GMAIL_USER?.trim();
-  const pass = process.env.GMAIL_APP_PASSWORD;
+  const pass = process.env.GMAIL_APP_PASSWORD?.replace(/\s+/g, "");
   const to = recipients();
   if (!user || !pass || to.length === 0) {
     if (!warned) {

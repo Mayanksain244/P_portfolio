@@ -13,7 +13,10 @@
   - contact form (anti-spam: honeypot, HMAC form token, 3/hour rate limit, URL cap)
   - Gmail mailer, plus a map card and the CM Helpline 1905 note
   - `SocialLinks`, the favicon, and `hash-password --write`
-- [ ] Owner: Gmail App Password (`GMAIL_USER`, `GMAIL_APP_PASSWORD`, `CONTACT_TO`) in `.env.local` and Vercel. Then test a real email send.
+- [x] Gmail App Password set in `.env.local` (2026-11-11). SMTP login worked and a real test email was accepted for `CONTACT_TO`.
+  - [x] The owner confirmed the test email arrived (2026-11-11).
+  - [ ] Owner: set the same three vars in Vercel and redeploy.
+  - [x] Mailer now strips whitespace from `GMAIL_APP_PASSWORD`, because Google shows it in four groups. Added `mailer.test.ts`; 116 tests pass.
 - [ ] Owner: social media links, to add to `profile.social`
 - [x] Local admin password set (2026-11-11). It's only 6 digits, so **choose a stronger one before going live**.
 - [x] `scripts/hash-password.mjs --write` added (writes the escaped hash and verifies it through `@next/env`)

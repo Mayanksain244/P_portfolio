@@ -110,7 +110,7 @@ See `.env.example`.
   - The DB migration is reviewed; the owner still has to run it in the SQL Editor. Run the smoke test after that.
 - Phase 3 DB is live (the smoke test passed 22/22).
 - Phase 4 (Admin) is built and pushed as 7697e9f. Still to do: a browser walkthrough of the client-side upload, and the owner running migration 0002.
-- Phase 5 (Contact) is done and reviewed on 2026-11-11. Email sending waits on the owner's Gmail App Password.
+- Phase 5 (Contact) is done and reviewed on 2026-11-11. Gmail is configured locally: SMTP login and a real test send passed on 2026-11-11. The owner adds the same vars to Vercel.
 - Next: Phase 6 (real content and images from the owner), then Phase 7 (QA, security hardening, launch).
 
 ## Code map (Phase 5)
@@ -122,6 +122,7 @@ See `.env.example`.
   - Messages are saved to `messages` first, then emailed via Gmail SMTP with reply-to set to the sender.
   - **There is never an auto-reply to the sender**, so the form can't be used as a spam relay.
   - If the Gmail env vars are missing, the email is skipped with a warning.
+  - All whitespace is stripped from `GMAIL_APP_PASSWORD`, so the 4-group form Google shows also works.
 - **Social links:** `profile.social` is `{platform, url, label?}[]`. When it's empty, the Social sections are hidden.
 - **Admin password:** `node scripts/hash-password.mjs "<pw>" --write` sets the escaped hash in `.env.local` and verifies it.
 
