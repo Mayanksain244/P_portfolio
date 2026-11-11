@@ -109,11 +109,17 @@
   },
   "about": {
     "title": "परिचय",
-    "portraitLabel": "चित्र — फ़ोटो शीघ्र उपलब्ध होगी",
-    "sheetTitle": "ड्रॉइंग टाइटल ब्लॉक",
-    "tbName": "नाम",
-    "tbDesignation": "पदनाम",
-    "tbSince": "सेवा में प्रवेश"
+    "sheetTitle": "व्यक्तिगत विवरण पत्रक",
+    "sheetHeader": "पत्रक 01 · व्यक्तिगत विवरण",
+    "sheetFooter": "लोनिवि · उत्तराखंड",
+    "drawingNo": "ड्रॉ. सं. SSS/2004",
+    "name": "नाम",
+    "designation": "पद",
+    "department": "विभाग",
+    "departmentValue": "लोक निर्माण विभाग, उत्तराखंड सरकार",
+    "since": "सेवा आरंभ",
+    "currentPosting": "वर्तमान तैनाती",
+    "postings": "तैनातियाँ"
   },
   "journey": {
     "title": "सेवा यात्रा",

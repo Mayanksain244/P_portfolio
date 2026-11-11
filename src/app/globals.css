@@ -285,3 +285,90 @@ html[lang="hi"] .diary-stamp {
     transition: none;
   }
 }
+
+/* ---------- Home hero portrait ---------- */
+.hero-figure {
+  position: relative;
+  height: 320px;
+  aspect-ratio: 1034 / 1200;
+  margin-inline: auto;
+}
+.hero-glow {
+  position: absolute;
+  left: 50%;
+  top: 26%;
+  width: 150%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    closest-side,
+    rgba(244, 239, 230, 0.14),
+    rgba(244, 239, 230, 0.06) 55%,
+    transparent
+  );
+  pointer-events: none;
+}
+.hero-portrait-img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.35));
+  animation: hero-rise 0.8s ease-out both;
+}
+.hero-arc {
+  stroke-dasharray: 1;
+  animation: arc-draw 1.4s ease-out 0.2s both;
+}
+.hero-arc-ticks {
+  animation: hero-fade 0.6s ease-out 1.2s both;
+}
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes hero-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes arc-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@media (min-width: 768px) {
+  .hero-col {
+    container-type: size;
+  }
+  .hero-figure {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    height: auto;
+    margin: 0;
+    width: min(100cqw, calc(86cqh * 1034 / 1200));
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-portrait-img,
+  .hero-arc,
+  .hero-arc-ticks {
+    animation: none;
+  }
+}

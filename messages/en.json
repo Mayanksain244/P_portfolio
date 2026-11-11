@@ -109,11 +109,17 @@
   },
   "about": {
     "title": "About",
-    "portraitLabel": "Portrait — photo coming soon",
-    "sheetTitle": "Drawing title block",
-    "tbName": "Name",
-    "tbDesignation": "Designation",
-    "tbSince": "In service since"
+    "sheetTitle": "Personal data sheet",
+    "sheetHeader": "Sheet 01 · Personal data",
+    "sheetFooter": "PWD · Uttarakhand",
+    "drawingNo": "DRG. NO. SSS/2004",
+    "name": "Name",
+    "designation": "Designation",
+    "department": "Department",
+    "departmentValue": "Public Works Department, Government of Uttarakhand",
+    "since": "In service since",
+    "currentPosting": "Current posting",
+    "postings": "Postings"
   },
   "journey": {
     "title": "Service Journey",

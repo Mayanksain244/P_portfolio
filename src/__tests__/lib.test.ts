@@ -44,6 +44,23 @@ describe("journey arcs", () => {
     expect(buildArc(a, b, 1).angle).toBeCloseTo(0);
     expect(Math.abs(buildArc(b, a, 1).angle)).toBeCloseTo(180);
   });
+  it("returns rounded values so server and client SVG output match", () => {
+    const decimals = (n: number) => (String(n).split(".")[1] ?? "").length;
+    const pts = [
+      { x: 123.456789, y: 78.9012345 },
+      { x: 301.7777777, y: 140.3333333 },
+      { x: 410.123456, y: 222.987654 },
+    ];
+    for (const arc of buildRoute(pts)) {
+      for (const n of [arc.control.x, arc.control.y, arc.mid.x, arc.mid.y, arc.angle]) {
+        expect(decimals(n)).toBeLessThanOrEqual(2);
+      }
+      const nums = arc.d.match(/-?\d+(?:\.\d+)?/g) ?? [];
+      expect(nums.length).toBe(6);
+      for (const m of nums) expect(decimals(Number(m))).toBeLessThanOrEqual(1);
+    }
+    expect(decimals(buildArc(pts[0], pts[1], 1, 0.22, 0.35).angle)).toBeLessThanOrEqual(2);
+  });
   it("builds n-1 arcs", () => {
     const arcs = buildRoute([a, b, { x: 200, y: 50 }, { x: 300, y: 0 }]);
     expect(arcs).toHaveLength(3);

@@ -105,7 +105,23 @@ See `.env.example`.
 - Phase 2 (Home, Service Journey, Works, theme toggle, AAE): done and reviewed on 2026-11-11.
   - Lint, build and test (24) pass.
   - Checked visually: EN and HI, light and dark, map, timeline, Works empty state.
-- Next: Phase 3 (Supabase + Site Diary), which needs the owner's Supabase keys.
+- Phase 3 (Site Diary code), hero portrait and About DataSheet: done and reviewed on 2026-11-11.
+  - Lint, test (43) and build pass.
+  - The DB migration is reviewed; the owner still has to run it in the SQL Editor. Run the smoke test after that.
+- Next: the Phase 3 DB smoke test, then Phase 4 (Admin).
+
+## Code map (Phase 3 + hero)
+- `supabase/migrations/0001_init.sql` creates the `albums`, `images` and `messages` tables (RLS: public may read only published albums and their images; `messages` has no public access) and the public `gallery` bucket.
+- `src/lib/supabase/{server,types,gallery}.ts`:
+  - `server-only`. `getPublicClient` uses the publishable key; `getAdminClient` uses the secret key.
+  - If the DB is missing, these return empty results and log a warning rather than crash.
+- `src/lib/diary.ts`: helpers plus `GALLERY_PATHS`, the paths to pass to `revalidatePath`.
+- Components: `DiaryCard`, `DiaryEmpty`, `GalleryBrowser` (category chips in `?category=`), `AlbumGallery` (masonry), `Lightbox` (keyboard and swipe, `?photo=`).
+- `scripts/check-db.mjs`: run with `node --env-file=.env.local scripts/check-db.mjs`.
+- `Hero.tsx`: a cutout portrait with a paper glow, a marigold arc and a ridge line.
+- `DataSheet.tsx`: the About title-block.
+- Portrait webps are in `public/images/portrait/`. The source files are in `scripts/portrait/source/` and the pipeline is `scripts/portrait/process.mjs`.
+- **Gotcha:** `npm run build` overwrites `.next`, which breaks a running `npm run dev`. Stop the dev server before building, or have subagents use `tsc --noEmit` instead.
 
 ## Decisions log
 - 2026-11-11 (Phase 2): The Uttarakhand map is cropped to the western part of the state, where all the postings are. The India inset shows the whole state. In light mode the route uses a darker marigold (`#9c6a0b`) for contrast. The Hindi short designation uses "लोनिवि", the standard abbreviation, which the owner should confirm.

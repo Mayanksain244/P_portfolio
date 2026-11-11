@@ -1,14 +1,18 @@
 # TODO
 
 ## Doing
-- [ ] Phase 3: Supabase schema + Site Diary public pages + Phase 2 polish
+- [ ] Phase 3: code done (40 tests pass). PM reviewed the SQL. **Waiting on the owner to run `supabase/migrations/0001_init.sql` in the SQL Editor**, then a smoke test with a temporary album.
+- [x] Hero portrait, About data sheet and OG image: reviewed in the browser on 2026-11-11 (desktop, 375px, EN and HI, light and dark)
+- [x] Hydration and 500 check: the errors were stale (rounding was already in place, and the 500 was a one-off from a dev-server hot reload). Added a rounding test.
+- [ ] Add a favicon/app icon built from the Monogram (`src/app/icon.svg`); /favicon.ico currently 404s
 - [x] Portrait cutout done and reviewed (2026-11-11). It is clean on navy and on paper.
   - When the portrait goes into the hero, move `original.png`, `portrait-cutout.png` and `preview-*.png` out of `public/` (about 7.6 MB) into `scripts/portrait/source/`.
   - The blue suit on a navy hero needs separation: add a marigold rim-light arc and a soft paper glow behind the shoulders.
 - [ ] Next: put the portrait in the hero, and turn the About portrait frame into a personal data sheet (after Phase 3, to avoid file conflicts)
 
 ## To Do
-- [ ] Push to GitHub (`origin` = github.com/Mayanksain244/P_portfolio, branch `main`) once Phase 3 and the portrait work finish
+- [x] First push to GitHub (`origin` = github.com/Mayanksain244/P_portfolio, branch `main`), commit 4fda83a (2026-11-11). Phase 3 was still in progress at the time.
+- [x] Pushed Phase 3 and the hero portrait (2026-11-11)
 - [ ] **Owner: revoke the GitHub token that was pasted in chat on 2026-11-11.** Use `gh auth login` or Git Credential Manager from then on.
 - [ ] **Before going live: rotate the Supabase secret key.** It was pasted in chat on 2026-11-11. Create a new secret key in the dashboard, update `.env.local` and Vercel, then delete the old key.
 - [ ] Polish from the Phase 2 review: make the Hindi DimensionDivider titles larger, and translate the map attribution on `/hi`

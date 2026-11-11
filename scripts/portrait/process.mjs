@@ -7,7 +7,8 @@ const { default: sharp } = await import('sharp');
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const out = path.resolve(here, '../../public/images/portrait');
-const src = path.join(out, 'original.png');
+const srcDir = path.join(here, 'source'); // tracked/ignored sources, never deployed
+const src = path.join(srcDir, 'original.png');
 const ERODE = Number(process.env.ERODE ?? 1);
 const FEATHER = Number(process.env.FEATHER ?? 0.8);
 const MODEL = process.env.MODEL ?? 'medium';
@@ -100,11 +101,11 @@ const bx0 = Math.max(0, x0 - pad), by0 = Math.max(0, y0 - pad);
 const bx1 = Math.min(W - 1, x1 + pad), by1 = Math.min(H - 1, y1 + pad);
 const full = await sharp(rgba, { raw: { width: W, height: H, channels: 4 } })
   .extract({ left: bx0, top: by0, width: bx1 - bx0 + 1, height: by1 - by0 + 1 }).png({ compressionLevel: 9 }).toBuffer();
-fs.writeFileSync(path.join(out, 'portrait-cutout.png'), full);
+fs.writeFileSync(path.join(srcDir, 'portrait-cutout.png'), full);
 
 // 6. outputs
 const meta = {};
-const info = async (name) => { const m = await sharp(path.join(out, name)).metadata(); const s = fs.statSync(path.join(out, name)).size; meta[name] = { width: m.width, height: m.height, bytes: s }; };
+const info = async (name) => { const d = /^(preview-|portrait-cutout.png)/.test(name) ? srcDir : out; const m = await sharp(path.join(d, name)).metadata(); const s = fs.statSync(path.join(d, name)).size; meta[name] = { width: m.width, height: m.height, bytes: s }; };
 await sharp(full).resize({ height: 1200, withoutEnlargement: true }).webp({ quality: 85, alphaQuality: 90 }).toFile(path.join(out, 'portrait-cutout.webp'));
 await sharp(full).resize({ height: 600, withoutEnlargement: true }).webp({ quality: 85, alphaQuality: 90 }).toFile(path.join(out, 'portrait-cutout-sm.webp'));
 
@@ -117,7 +118,7 @@ await sharp(full).resize({ height: 600, withoutEnlargement: true }).webp({ quali
 }
 for (const [name, bg] of [['preview-navy.png', '#0A1C2E'], ['preview-paper.png', '#F4EFE6']]) {
   await sharp({ create: { width: bx1 - bx0 + 1, height: by1 - by0 + 1, channels: 3, background: bg } })
-    .composite([{ input: full }]).png().toFile(path.join(out, name));
+    .composite([{ input: full }]).png().toFile(path.join(srcDir, name));
 }
 for (const n of ['portrait-cutout.png','portrait-cutout.webp','portrait-cutout-sm.webp','portrait-square.webp','preview-navy.png','preview-paper.png']) await info(n);
 meta.alphaBoundingBoxInOriginal = { x: x0, y: y0, width: x1 - x0 + 1, height: y1 - y0 + 1 };

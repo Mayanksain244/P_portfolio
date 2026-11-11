@@ -1,9 +1,9 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import BlueprintGrid from "@/components/BlueprintGrid";
 import ContourBackground from "@/components/ContourBackground";
 import DiaryCard from "@/components/DiaryCard";
 import DimensionDivider from "@/components/DimensionDivider";
-import PortraitFrame from "@/components/PortraitFrame";
+import DataSheet from "@/components/DataSheet";
+import Hero from "@/components/Hero";
 import Reveal from "@/components/Reveal";
 import ServiceJourney from "@/components/ServiceJourney";
 import StatsStrip from "@/components/StatsStrip";
@@ -34,28 +34,7 @@ export default async function HomePage({
   return (
     <>
       {/* 1. Hero */}
-      <BlueprintGrid className="relative flex min-h-[calc(100svh-4rem)] items-center overflow-hidden bg-navy text-paper dark:bg-navy-900">
-        <ContourBackground className="text-paper" />
-        <div className="relative mx-auto w-full max-w-6xl px-4 py-16 sm:px-6">
-          <h1 className="font-heading text-5xl font-semibold leading-[1.05] sm:text-7xl lg:text-8xl">
-            {pick(profile.name, locale)}
-          </h1>
-          <p className="mt-5 text-lg font-medium text-marigold sm:text-xl">
-            {pick(profile.designation, locale)}
-          </p>
-          <p className="mt-6 max-w-xl text-lg text-paper/90 sm:text-xl">
-            {t("home.tagline")}
-          </p>
-          <div className="mt-10 flex flex-wrap gap-4">
-            <Link href="/works" className="btn btn-primary">
-              {t("home.viewWorks")}
-            </Link>
-            <Link href="/contact" className="btn btn-outline">
-              {t("home.getInTouch")}
-            </Link>
-          </div>
-        </div>
-      </BlueprintGrid>
+      <Hero locale={locale} />
 
       {/* 2. At a glance */}
       <section
@@ -84,12 +63,12 @@ export default async function HomePage({
       >
         <Reveal>
           <DimensionDivider id="about-title" title={t("about.title")} />
-          <div className="mt-12 grid items-start gap-10 md:grid-cols-[1fr_20rem] lg:grid-cols-[1fr_22rem] lg:gap-16">
+          <div className="mt-12 grid items-start gap-10 md:grid-cols-[1fr_24rem] lg:grid-cols-[1fr_28rem] lg:gap-16">
             <p lang={locale} className="max-w-prose text-lg leading-8">
               {pick(profile.bio, locale)}
             </p>
-            <div className="mx-auto w-full max-w-xs md:max-w-none">
-              <PortraitFrame locale={locale} />
+            <div className="w-full">
+              <DataSheet />
             </div>
           </div>
         </Reveal>

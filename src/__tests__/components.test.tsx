@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { afterEach, describe, expect, it } from "vitest";
 import en from "../../messages/en.json";
 import hi from "../../messages/hi.json";
+import DataSheet from "@/components/DataSheet";
 import ServiceJourney from "@/components/ServiceJourney";
 import WorkCard from "@/components/WorkCard";
 import WorksBrowser from "@/components/WorksBrowser";
@@ -127,5 +128,21 @@ describe("ThemeToggle", () => {
       await screen.findByRole("button", { name: "Switch to light theme" }),
     ).toBeTruthy();
     expect(document.documentElement.getAttribute("data-theme")).toBe("dark");
+  });
+});
+
+describe("DataSheet", () => {
+  it.each([
+    ["en", en, "Dugadda, Pauri Garhwal", "Name", "SHEET 01"],
+    ["hi", hi, "दुगड्डा, पौड़ी गढ़वाल", "नाम", "पत्रक 01"],
+  ] as const)("renders the title-block rows (%s)", (locale, msgs, posting, label, header) => {
+    render(wrap(<DataSheet />, locale));
+    expect(screen.getByText(label)).toBeTruthy();
+    expect(screen.getByText(posting)).toBeTruthy();
+    expect(screen.getByText("2004")).toBeTruthy();
+    expect(screen.getByText("5")).toBeTruthy();
+    expect(screen.getByText(msgs.about.departmentValue)).toBeTruthy();
+    expect(screen.getByText(new RegExp(header, "i"))).toBeTruthy();
+    expect(screen.getAllByRole("row")).toHaveLength(6);
   });
 });

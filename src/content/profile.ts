@@ -21,6 +21,18 @@ export type SocialLink = {
   href: string;
 };
 
+export type Portrait = {
+  /** Full-size cut-out (desktop). */
+  src: string;
+  width: number;
+  height: number;
+  /** Smaller cut-out (mobile). */
+  srcSm: string;
+  widthSm: number;
+  heightSm: number;
+  alt: Localized;
+};
+
 export type Profile = {
   name: Localized;
   designation: Localized;
@@ -28,8 +40,8 @@ export type Profile = {
   designationShort: Localized;
   serviceStartYear: number;
   bio: Localized;
-  /** Path under /public, e.g. "/images/portrait.jpg". Undefined until a photo is supplied. */
-  portrait?: string;
+  /** Transparent cut-out portrait (files under /public/images/portrait). */
+  portrait?: Portrait;
   postings: Posting[];
   social: SocialLink[];
 };
@@ -52,7 +64,18 @@ export const profile: Profile = {
     en: "Sahab Singh Saini is an Additional Assistant Engineer (AAE) with the Public Works Department, Government of Uttarakhand. Since joining the department in 2004, he has spent more than two decades building and maintaining the roads, bridges and public buildings that connect communities across the Garhwal hills and the plains of Haridwar district. His postings — from Ghansali in Tehri Garhwal to Roorkee, Srinagar, Narendra Nagar and now Dugadda — have given him hands-on experience of engineering in some of the state's most demanding terrain, where monsoon landslides, steep gradients and remote sites are part of the everyday brief. He believes good public infrastructure is measured by the people it quietly serves: the child who reaches school on time, the farmer who gets produce to market, and the patient who reaches hospital when it matters.",
     hi: "साहब सिंह सैनी उत्तराखंड सरकार के लोक निर्माण विभाग में अपर सहायक अभियंता हैं। वर्ष 2004 में विभाग से जुड़ने के बाद से वे दो दशकों से अधिक समय से गढ़वाल की पहाड़ियों और हरिद्वार ज़िले के मैदानी क्षेत्रों में सड़कों, पुलों और सार्वजनिक भवनों के निर्माण व रखरखाव में जुटे हैं। टिहरी गढ़वाल के घनसाली से लेकर रुड़की, श्रीनगर, नरेंद्रनगर और अब दुगड्डा तक की तैनाती ने उन्हें राज्य के सबसे चुनौतीपूर्ण भू-भाग में इंजीनियरिंग का प्रत्यक्ष अनुभव दिया है, जहाँ मानसून के भूस्खलन, खड़ी ढलानें और दूरस्थ कार्यस्थल रोज़मर्रा की चुनौती हैं। उनका मानना है कि अच्छे सार्वजनिक ढाँचे की असली पहचान वे लोग हैं जिनकी वह चुपचाप सेवा करता है — समय पर स्कूल पहुँचता बच्चा, मंडी तक उपज ले जाता किसान, और ज़रूरत के समय अस्पताल पहुँचता मरीज़।",
   },
-  portrait: undefined,
+  portrait: {
+    src: "/images/portrait/portrait-cutout.webp",
+    width: 1034,
+    height: 1200,
+    srcSm: "/images/portrait/portrait-cutout-sm.webp",
+    widthSm: 517,
+    heightSm: 600,
+    alt: {
+      en: "Portrait of Er. Sahab Singh Saini",
+      hi: "इं. साहब सिंह सैनी का चित्र",
+    },
+  },
   postings: [
     {
       id: "ghansali",

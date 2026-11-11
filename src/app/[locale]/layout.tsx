@@ -43,7 +43,25 @@ export async function generateMetadata({
     designation: pick(profile.designationShort, locale),
     designationFull: pick(profile.designation, locale),
   };
+  const image = {
+    url: "/images/portrait/portrait-square.webp",
+    width: 1200,
+    height: 1200,
+    alt: pick(profile.portrait?.alt ?? profile.name, locale),
+  };
+  const title = t("title", values);
+  const description = t("description", values);
   return {
+    metadataBase: new URL(
+      process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+    ),
+    openGraph: { title, description, type: "website", images: [image] },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image.url],
+    },
     title: { default: t("title", values), template: t("titleTemplate", values) },
     description: t("description", values),
     alternates: {
