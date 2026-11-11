@@ -48,7 +48,10 @@
   - image upload and grouping
   - messages inbox
 - [ ] Phase 5: Contact form + Gmail mailer + anti-spam + social links *(owner: Gmail app password)*
-- [ ] Phase 6: Ask the owner for images (with a generation prompt for each) and for the real profile content
+- [ ] Phase 6 (started 2026-11-11):
+  - [x] Content and image request written in `docs/CONTENT_REQUEST.md` and sent to the owner. Project and diary photos must be real; AI prompts only cover the 5 optional blueprint illustrations for Works cards with no photo.
+  - [x] Branded 1200×630 OG share banner per locale, built from the portrait: JPEGs of about 65 KB (WhatsApp drops previews over about 300 KB). Reviewed; 123 tests and the build pass (2026-11-11).
+  - [ ] Waiting on the owner: projects (Part A), real photos (Part B), optional illustrations (Part C), confirmations (Part D: social links, Hindi designation, bio last line, qualifications, office contact)
 - [ ] Phase 7: QA and launch
   - a11y, mobile, Lighthouse and Playwright checks
   - triage the `npm audit` results

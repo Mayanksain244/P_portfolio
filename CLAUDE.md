@@ -116,7 +116,8 @@ See `.env.example`.
 - Phase 3 DB is live (the smoke test passed 22/22).
 - Phase 4 (Admin) is built and pushed as 7697e9f. Still to do: a browser walkthrough of the client-side upload, and the owner running migration 0002.
 - Phase 5 (Contact) is done and reviewed on 2026-11-11. Gmail is configured locally: SMTP login and a real test send passed on 2026-11-11. The owner adds the same vars to Vercel.
-- Next: Phase 6 (real content and images from the owner), then Phase 7 (QA, security hardening, launch).
+- Phase 6 started on 2026-11-11. The request to the owner is in `docs/CONTENT_REQUEST.md`. The OG banner is in progress, and the rest waits on the owner.
+- Then Phase 7 (QA, security hardening, launch).
 
 ## Code map (Phase 5)
 - **Contact:**
@@ -133,6 +134,17 @@ See `.env.example`.
   - All whitespace is stripped from `GMAIL_APP_PASSWORD`, so the 4-group form Google shows also works.
 - **Social links:** `profile.social` is `{platform, url, label?}[]`. When it's empty, the Social sections are hidden.
 - **Admin password:** `node scripts/hash-password.mjs "<pw>" --write` sets the escaped hash in `.env.local` and verifies it.
+
+## Code map (Phase 6): share banner
+- **What's served:** pages use the static `public/images/og/og-{en,hi}.jpg` (1200×630, about 65 KB) for `openGraph` and `twitter`, set in `[locale]/layout.tsx`. The JPEGs must stay **≤ 200 KB** (WhatsApp limit), and a test checks this.
+- **Source:** `src/app/api/og/[locale]/route.tsx` (`next/og`, force-static).
+  - It lives under `/api` because the intl middleware skips `/api`.
+  - There is deliberately **no** `opengraph-image.tsx`, so each page has exactly one og:image.
+- **Regenerating the JPEGs:** after a profile or design change, run `node scripts/og/export-og.mjs` with the dev server running.
+- **Hindi text:** Satori can't shape Devanagari, so the Hindi lines are pre-rendered PNGs (`public/images/og/hi-*.png`).
+  - Regenerate them with `node scripts/og/render-hindi.mjs` (needs Edge or Chrome).
+- **Fonts:** in `src/app/fonts/og/`. These are static instances, because the variable TTFs crash Satori.
+- **Unused:** `portrait-square.webp` is no longer used for sharing.
 
 ## Code map (Phase 4)
 - **Auth:**
@@ -163,6 +175,11 @@ See `.env.example`.
 - **Gotcha:** `npm run build` overwrites `.next`, which breaks a running `npm run dev`. Stop the dev server before building, or have subagents use `tsc --noEmit` instead.
 
 ## Decisions log
+- 2026-11-11 (Phase 6):
+  - **Photos of projects and site visits must be real.** No AI images that could pass as his work.
+  - AI prompts are limited to optional blueprint-style line illustrations used as Works-card fallbacks.
+  - The OG banner is generated in code from the real portrait.
+  - The bio's last line ("He believes…") needs owner sign-off.
 - 2026-11-11: At the owner's request the site **defaults to the light theme** (`defaultTheme="light"`, `enableSystem={false}`) on both the public site and the admin. A visitor's toggle choice is still saved in localStorage.
 - 2026-11-11 (Phase 4 design):
   - **Admin is English-only at `/admin`, with its own root layout.** It uses a fixed username plus a bcrypt hash and a jose JWT cookie (8h, `sameSite` strict). The middleware guards the pages, and **every server action calls `requireAdmin()`**.

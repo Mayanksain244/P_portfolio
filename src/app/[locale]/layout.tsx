@@ -43,11 +43,13 @@ export async function generateMetadata({
     designation: pick(profile.designationShort, locale),
     designationFull: pick(profile.designation, locale),
   };
+  // Pre-exported JPEG (< 200 KB so WhatsApp keeps the preview); see scripts/og/export-og.mjs.
   const image = {
-    url: "/images/portrait/portrait-square.webp",
+    url: `/images/og/og-${locale}.jpg`,
     width: 1200,
-    height: 1200,
-    alt: pick(profile.portrait?.alt ?? profile.name, locale),
+    height: 630,
+    type: "image/jpeg",
+    alt: pick(profile.name, locale),
   };
   const title = t("title", values);
   const description = t("description", values);
