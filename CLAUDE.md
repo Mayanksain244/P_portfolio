@@ -108,7 +108,24 @@ See `.env.example`.
 - Phase 3 (Site Diary code), hero portrait and About DataSheet: done and reviewed on 2026-11-11.
   - Lint, test (43) and build pass.
   - The DB migration is reviewed; the owner still has to run it in the SQL Editor. Run the smoke test after that.
-- Next: the Phase 3 DB smoke test, then Phase 4 (Admin).
+- Phase 3 DB is live (the smoke test passed 22/22).
+- Phase 4 (Admin) is built and pushed as 7697e9f. Still to do: a browser walkthrough of the client-side upload, and the owner running migration 0002.
+- Next: Phase 5 (Contact form + Gmail), which reuses `src/lib/rateLimit.ts` `checkAndRecord`.
+
+## Code map (Phase 4)
+- **Auth:**
+  - `src/lib/auth/token.ts` is edge-safe jose code, used by the middleware.
+  - `src/lib/auth/session.ts` is server-only and exports `requireAdmin` and `getSession`.
+  - `credentials.ts` does a constant-time compare plus bcrypt. The `DUMMY_HASH` in it is a deliberate timing decoy, not a secret.
+  - `routing.ts` exports `adminRedirect` and `safeNext`.
+- **Actions:** in `src/app/admin/actions/{auth,albums,images,messages}.ts`. **Every action except logout starts with `await requireAdmin()`.**
+- **Pages:** `src/app/admin/layout.tsx` is the admin's own root layout (noindex). The pages live under `src/app/admin/(panel)/`, and the components under `src/components/admin/`.
+- **Uploads:** `createUploadUrl` returns a signed URL. The client sends `processImage.ts` output (2400px WebP plus blur placeholder) with `uploadToSignedUrl`, then calls `addImage`. Storage paths are `albums/{albumId}/{uuid}.webp`.
+- **Rate limiting:** `src/lib/rateLimit.ts` uses the `rate_limits` table and hashed IPs. If the table is missing it fails open.
+- **Scripts:** `scripts/hash-password.mjs` and `scripts/smoke-admin.mjs`. The dev password lives in `.admin-dev-password.txt`, which git ignores.
+- **Gotchas:**
+  - In `.env.local`, every `$` in the bcrypt hash must be written as `\$`, because Next expands variables. On Vercel, paste the hash as-is.
+  - Changes to env vars only reach the middleware after `src/middleware.ts` is recompiled.
 
 ## Code map (Phase 3 + hero)
 - `supabase/migrations/0001_init.sql` creates the `albums`, `images` and `messages` tables (RLS: public may read only published albums and their images; `messages` has no public access) and the public `gallery` bucket.
