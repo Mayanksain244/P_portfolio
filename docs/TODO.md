@@ -33,7 +33,7 @@
 ## To Do
 - [x] First push to GitHub (`origin` = github.com/Mayanksain244/P_portfolio, branch `main`), commit 4fda83a (2026-11-11). Phase 3 was still in progress at the time.
 - [x] Pushed Phase 3 and the hero portrait (2026-11-11)
-- [ ] **Owner: revoke the GitHub token that was pasted in chat on 2026-11-11.** Use `gh auth login` or Git Credential Manager from then on.
+- [ ] **GitHub token:** at the owner's request (2026-11-11) it is kept in `.env.local` as `GITHUB_TOKEN`, which git ignores. It is used only for pushes, through a one-time `http.extraHeader`, and is never stored in the git config. It was pasted in chat, so before launch: create a new fine-grained token with access to this repo only, replace it in `.env.local`, and revoke the old one.
 - [ ] **Before going live: rotate the Supabase secret key.** It was pasted in chat on 2026-11-11. Create a new secret key in the dashboard, update `.env.local` and Vercel, then delete the old key.
 - [ ] Polish from the Phase 2 review: make the Hindi DimensionDivider titles larger, and translate the map attribution on `/hi`
 - [ ] Owner: confirm the Hindi short designation "अपर सहायक अभियंता, लोनिवि उत्तराखंड"

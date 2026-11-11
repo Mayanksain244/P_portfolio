@@ -76,6 +76,11 @@ npm test         # vitest
 ## Env vars
 See `.env.example`.
 
+## Pushing to GitHub
+- `GITHUB_TOKEN` in `.env.local` is for local use only, at the owner's request. It never goes to Vercel and is never committed.
+- Push by reading the token from `.env.local` into a one-time `git -c http.extraHeader="Authorization: Basic <base64 x-access-token:TOKEN>" push origin main`.
+- Never print the token and never save it in the git config.
+
 ## Code map (Phase 1)
 - `src/i18n/{routing,navigation,request}.ts` hold the next-intl config. `src/middleware.ts` excludes `/admin`, `/api`, `_next` and static files.
 - `src/app/[locale]/layout.tsx` owns `<html>`, so there is no root layout. **`/admin` will need its own root layout (Phase 4).**
