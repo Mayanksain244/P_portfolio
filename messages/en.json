@@ -1,0 +1,165 @@
+{
+  "metadata": {
+    "title": "{name} | {designation}",
+    "titleTemplate": "%s | {name}",
+    "description": "Portfolio of {name}, {designationFull}: roads, bridges and public works across the hills of Uttarakhand."
+  },
+  "site": {
+    "skipToContent": "Skip to main content"
+  },
+  "nav": {
+    "label": "Main navigation",
+    "home": "Home",
+    "works": "Works",
+    "gallery": "Site Diary",
+    "contact": "Get in Touch",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "language": {
+    "label": "Language",
+    "switchToEnglish": "Switch to English",
+    "switchToHindi": "Switch to Hindi"
+  },
+  "home": {
+    "tagline": "Building roads, bridges and public works across the hills of Uttarakhand since 2004.",
+    "viewWorks": "View Works",
+    "getInTouch": "Get in Touch"
+  },
+  "works": {
+    "title": "Works",
+    "intro": "Roads, bridges and public works delivered across the hills.",
+    "filterLabel": "Filter works",
+    "typeGroup": "Type",
+    "statusGroup": "Status",
+    "all": "All",
+    "type": {
+      "road": "Road",
+      "bridge": "Bridge",
+      "building": "Building",
+      "protection": "Protection work",
+      "other": "Other"
+    },
+    "status": {
+      "completed": "Completed",
+      "ongoing": "Ongoing"
+    },
+    "stamp": {
+      "completed": "COMPLETED",
+      "ongoing": "ONGOING"
+    },
+    "resultCount": "{count, plural, one {# project shown} other {# projects shown}}",
+    "noMatches": "No projects match these filters.",
+    "clearFilters": "Clear filters",
+    "emptyLabel": "Project register",
+    "emptyTitle": "Register being compiled",
+    "emptyText": "The project register is being compiled. Selected works will appear here soon.",
+    "emptyLink": "See the Service Journey",
+    "back": "Back to all works",
+    "hero": "Project image",
+    "scope": "Scope of work",
+    "specs": "Project particulars",
+    "summary": "Summary",
+    "details": "Details",
+    "noImage": "Photo to be added"
+  },
+  "gallery": {
+    "title": "Site Diary",
+    "intro": "Photographs from the field — sites, inspections, progress and the people behind the work.",
+    "filterLabel": "Filter by category",
+    "all": "All",
+    "undated": "Undated",
+    "photoCount": "{count, plural, one {# photo} other {# photos}}",
+    "resultCount": "{count, plural, one {# entry shown} other {# entries shown}}",
+    "emptyLabel": "Field notes",
+    "emptyTitle": "Diary being filled in",
+    "emptyText": "The site diary is being filled in. Photographs from the field will appear here soon.",
+    "back": "Back to the Site Diary",
+    "albumEmpty": "No photographs have been added to this entry yet.",
+    "openPhoto": "Open photo {n} of {total}",
+    "location": "Location"
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "intro": "Questions, collaboration or official correspondence are welcome."
+  },
+  "comingSoon": {
+    "label": "Sheet status",
+    "title": "Coming soon",
+    "text": "This section is being drawn up. Please check back shortly."
+  },
+  "footer": {
+    "quickLinks": "Quick links",
+    "social": "Social",
+    "socialSoon": "Social links coming soon",
+    "rights": "All rights reserved."
+  },
+  "notFound": {
+    "sign": "ROAD CLOSED",
+    "title": "Page not found",
+    "text": "The route you are looking for does not exist or has been diverted.",
+    "home": "Back to home"
+  },
+  "stats": {
+    "title": "At a glance",
+    "years": "Years of service",
+    "postings": "Postings",
+    "districts": "Districts",
+    "since": "In service since"
+  },
+  "about": {
+    "title": "About",
+    "portraitLabel": "Portrait — photo coming soon",
+    "sheetTitle": "Drawing title block",
+    "tbName": "Name",
+    "tbDesignation": "Designation",
+    "tbSince": "In service since"
+  },
+  "journey": {
+    "title": "Service Journey",
+    "intro": "Two decades, five postings, across the Garhwal hills and the Haridwar plains.",
+    "mapLabel": "Map of Uttarakhand showing the career route in order: {route}.",
+    "locatorLabel": "Locator: Uttarakhand within India",
+    "timelineLabel": "Postings in chronological order",
+    "currentPosting": "Current posting",
+    "present": "present",
+    "total": "{postings} postings · {districts} districts · {years}+ years",
+    "northArrow": "N",
+    "selectHint": "Select a posting to highlight it on the map.",
+    "mapAttribution": "Map data: Census of India 2011 district boundaries; India outline per Survey of India (compiled by DataMeet, CC BY 2.5 IN / CC0)."
+  },
+  "featured": {
+    "title": "Featured Works",
+    "viewAll": "View all works"
+  },
+  "diary": {
+    "title": "Site Diary",
+    "text": "Photographs from the field: sites, surveys and progress.",
+    "cta": "Open the Site Diary",
+    "latest": "Latest entries"
+  },
+  "contactCta": {
+    "title": "Contact",
+    "text": "Have a query about a public work in the area?"
+  },
+  "workCard": {
+    "projectNo": "Project No.",
+    "titleRow": "Title",
+    "location": "Location",
+    "year": "Year",
+    "status": "Status",
+    "openProject": "View project: {title}",
+    "noImage": "No image yet"
+  },
+  "theme": {
+    "switchToDark": "Switch to dark theme",
+    "switchToLight": "Switch to light theme"
+  },
+  "lightbox": {
+    "label": "Photo viewer",
+    "close": "Close",
+    "previous": "Previous photo",
+    "next": "Next photo",
+    "counter": "{current} / {total}"
+  }
+}

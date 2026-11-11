@@ -1,26 +1,287 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+/* ---------- Himalayan Blueprint design tokens ---------- */
+@theme static {
+  --color-navy: #0f2a44;
+  --color-navy-700: #1d4468;
+  --color-navy-900: #0a1c2e;
+  --color-paper: #f4efe6;
+  --color-paper-200: #e9e2d3;
+  --color-marigold: #e0a526;
+  --color-marigold-600: #b9851a;
+  --color-pine: #3e6b5a;
+  --color-ink: #1b1b1b;
+  --color-line: rgba(15, 42, 68, 0.12);
+
+  --font-sans: var(--font-inter), var(--font-devanagari), system-ui, sans-serif;
+  --font-heading: var(--font-fraunces), var(--font-devanagari), Georgia, serif;
+}
+
+/* Semantic, theme-aware colours. Dark values apply when next-themes sets data-theme="dark". */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+  --background: #f4efe6;
+  --foreground: #1b1b1b;
+  --muted: #4a4a4a; /* 7.4:1 on paper */
+  --surface: #e9e2d3;
+  --rule: rgba(15, 42, 68, 0.12);
+  --link: #0f2a44;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+    --background: #0f2a44;
+    --foreground: #f4efe6;
+    --muted: #c9d1da; /* 9.6:1 on navy */
+    --surface: #1d4468;
+    --rule: rgba(244, 239, 230, 0.16);
+    --link: #e0a526;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-surface: var(--surface);
+  --color-rule: var(--rule);
+  --color-link: var(--link);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Hindi: Devanagari first for body and headings */
+html[lang="hi"] {
+  --font-sans: var(--font-devanagari), var(--font-inter), system-ui, sans-serif;
+  --font-heading: var(--font-devanagari), var(--font-fraunces), Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+}
+
+/* Focus ring: marigold outline plus a navy inner ring (the 2px gap between the
+   element and the outline). The navy ring makes it visible on paper; on navy
+   backgrounds the marigold outline carries it. */
+:focus-visible {
+  outline: 3px solid var(--color-marigold);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--color-navy);
+  border-radius: 2px;
+}
+
+main:focus {
+  outline: none;
+}
+
+/* Blueprint grid: minor 16px, major 80px, drawn in the current text colour */
+@utility bg-blueprint {
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in srgb, currentColor 11%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, currentColor 11%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to right,
+      color-mix(in srgb, currentColor 4%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, currentColor 4%, transparent) 1px,
+      transparent 1px
+    );
+  background-size:
+    80px 80px,
+    80px 80px,
+    16px 16px,
+    16px 16px;
+}
+
+/* Buttons */
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+    padding: 0.625rem 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    border: 2px solid transparent;
+    transition:
+      background-color 0.2s,
+      color 0.2s,
+      border-color 0.2s;
+  }
+  .btn-primary {
+    background: var(--color-marigold);
+    color: var(--color-navy);
+  }
+  .btn-primary:hover {
+    background: #ecb73d;
+  }
+  .btn-outline {
+    border-color: var(--color-paper);
+    color: var(--color-paper);
+  }
+  .btn-outline:hover {
+    background: var(--color-paper);
+    color: var(--color-navy);
+  }
+}
+
+/* Dimension-line heading: no letter-spacing for Devanagari (breaks conjuncts) */
+.dim-title {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+html[lang="hi"] .dim-title {
+  letter-spacing: 0.04em;
+  text-transform: none;
+  /* ~28% larger than the Latin sizes (0.75rem / 0.875rem) and heavier, since small caps are unavailable */
+  font-size: 0.96rem;
+  font-weight: 600;
+}
+@media (min-width: 40rem) {
+  html[lang="hi"] .dim-title {
+    font-size: 1.12rem;
+  }
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+.reveal[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---------- Site Diary ---------- */
+/* Stencil-like survey-tag stamp: wide-tracked caps. Devanagari has no case or tracking. */
+.diary-stamp {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+html[lang="hi"] .diary-stamp {
+  font-family: inherit;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+@keyframes lightbox-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.lightbox-fade {
+  animation: lightbox-fade 0.25s ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .lightbox-fade {
+    animation: none;
+  }
+}
+
+/* "Road closed" barrier stripes */
+.barrier-stripes {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--color-marigold) 0 22px,
+    var(--color-navy) 22px 44px
+  );
+}
+
+/* ---------- Service Journey map ---------- */
+.journey-map {
+  --map-bg: #f4efe6;
+  --map-ink: #0f2a44;
+  --map-state: #e9e2d3;
+  --map-faint: rgba(15, 42, 68, 0.38);
+  /* marigold-600 darkened so the route reaches 3:1 on paper */
+  --map-route: #9c6a0b;
+  --map-pin: #0f2a44;
+  --map-ring: #f4efe6;
+  --map-current: #e0a526;
+}
+:root[data-theme="dark"] .journey-map {
+    --map-bg: #0a1c2e;
+    --map-ink: #f4efe6;
+    --map-state: #0f2a44;
+    --map-faint: rgba(244, 239, 230, 0.4);
+    --map-route: #e0a526;
+    --map-pin: #f4efe6;
+    --map-ring: #0a1c2e;
+    --map-current: #e0a526;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+.pulse-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pulse-ring 2.2s ease-out infinite;
+}
+.route-arc {
+  transition:
+    stroke-dashoffset 0.6s ease-in-out,
+    opacity 0.2s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pulse-ring {
+    animation: none;
+    opacity: 0.35;
+    transform: scale(1.8);
+  }
+  .route-arc {
+    transition: none;
+  }
 }

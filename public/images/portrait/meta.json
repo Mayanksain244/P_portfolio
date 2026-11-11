@@ -1,0 +1,55 @@
+{
+  "portrait-cutout.png": {
+    "width": 1059,
+    "height": 1229,
+    "bytes": 2156954
+  },
+  "portrait-cutout.webp": {
+    "width": 1034,
+    "height": 1200,
+    "bytes": 114282
+  },
+  "portrait-cutout-sm.webp": {
+    "width": 517,
+    "height": 600,
+    "bytes": 38542
+  },
+  "portrait-square.webp": {
+    "width": 1200,
+    "height": 1200,
+    "bytes": 102476
+  },
+  "preview-navy.png": {
+    "width": 1059,
+    "height": 1229,
+    "bytes": 1893577
+  },
+  "preview-paper.png": {
+    "width": 1059,
+    "height": 1229,
+    "bytes": 1899782
+  },
+  "alphaBoundingBoxInOriginal": {
+    "x": 212,
+    "y": 49,
+    "width": 1011,
+    "height": 1205
+  },
+  "cropInOriginal": {
+    "x": 188,
+    "y": 25,
+    "width": 1059,
+    "height": 1229
+  },
+  "source": {
+    "width": 1254,
+    "height": 1254
+  },
+  "params": {
+    "MODEL": "medium",
+    "ERODE": 1,
+    "FEATHER": 0.8,
+    "LO": 60,
+    "HI": 225
+  }
+}
