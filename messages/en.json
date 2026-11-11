@@ -136,6 +136,8 @@
       "title": "Contact details",
       "posting": "Current posting",
       "mapTitle": "Map showing {place}, {district}",
+      "mapTitleOffice": "Map showing {office}",
+      "office": "Office",
       "openMap": "Open in map",
       "social": "Find me online",
       "grievanceTitle": "Official grievances",

@@ -121,7 +121,10 @@ See `.env.example`.
 ## Code map (Phase 5)
 - **Contact:**
   - `src/lib/contact/{schema,antispam,emailTemplate}.ts`, `src/lib/mailer.ts` (server-only), `src/app/[locale]/contact/actions.ts` (`submitContact`, `issueFormToken`).
-  - Components: `ContactForm`, `ContactCard` (OSM map of Dugadda, CM Helpline 1905) and `SocialLinks`.
+  - Components: `ContactForm`, `ContactCard` (CM Helpline 1905) and `SocialLinks`.
+  - **The ContactCard map** pins `profile.office` (PWD Dugadda: 29.8062414, 78.6123615, Meerut–Pauri NH, Anmol Nagar, 246127), shows its address, and "Open in map" goes to the Google cid link.
+    - This data comes from the owner's Google Maps link (2026-11-11).
+    - The Dugadda posting keeps the town point for the Service Journey map.
 - **Anti-spam order:** honeypot → HMAC form token (3s to 2h old) → zod → URL cap (≤ 3) → rate limit (`contact`, 3 per hour per hashed IP).
 - **Behaviour:**
   - Messages are saved to `messages` first, then emailed via Gmail SMTP with reply-to set to the sender.

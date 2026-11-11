@@ -33,6 +33,15 @@ export type SocialLink = {
   label?: string;
 };
 
+export type Office = {
+  name: Localized;
+  address: Localized;
+  lat: number;
+  lng: number;
+  /** Google Maps link for the place. */
+  mapsUrl: string;
+};
+
 export type Portrait = {
   /** Full-size cut-out (desktop). */
   src: string;
@@ -55,6 +64,8 @@ export type Profile = {
   /** Transparent cut-out portrait (files under /public/images/portrait). */
   portrait?: Portrait;
   postings: Posting[];
+  /** Current office; the contact page pins this instead of the town centre. */
+  office?: Office;
   social: SocialLink[];
 };
 
@@ -135,6 +146,16 @@ export const profile: Profile = {
       lng: 78.612,
     },
   ],
+  office: {
+    name: { en: "PWD Office, Dugadda", hi: "लोक निर्माण विभाग कार्यालय, दुगड्डा" },
+    address: {
+      en: "Meerut–Pauri National Highway, Anmol Nagar, Dugadda, Uttarakhand 246127",
+      hi: "मेरठ–पौड़ी राष्ट्रीय राजमार्ग, अनमोल नगर, दुगड्डा, उत्तराखंड 246127",
+    },
+    lat: 29.8062414,
+    lng: 78.6123615,
+    mapsUrl: "https://maps.google.com/?cid=9673569232844427924",
+  },
   // Owner will provide the links. Leave empty to hide every social block.
   // Example (replace the values, then uncomment):
   // social: [

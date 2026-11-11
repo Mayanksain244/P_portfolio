@@ -18,6 +18,7 @@
   - [x] The owner set the same three vars in Vercel and redeployed (2026-11-11).
   - [ ] Live test: send one message through the contact form on the Vercel URL and confirm the email arrives (Phase 7 QA).
   - [x] Mailer now strips whitespace from `GMAIL_APP_PASSWORD`, because Google shows it in four groups. Added `mailer.test.ts`; 116 tests pass.
+- [x] The Contact card pins the real PWD Dugadda office and shows its address (EN and HI) and a Google Maps link. Owner-supplied, reviewed in the browser, 119 tests pass (2026-11-11).
 - [ ] Owner: social media links, to add to `profile.social`
 - [x] Local admin password set (2026-11-11). It's only 6 digits, so **choose a stronger one before going live**.
 - [x] `scripts/hash-password.mjs --write` added (writes the escaped hash and verifies it through `@next/env`)

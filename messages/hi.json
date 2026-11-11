@@ -136,6 +136,8 @@
       "title": "संपर्क विवरण",
       "posting": "वर्तमान तैनाती",
       "mapTitle": "{place}, {district} दर्शाता नक्शा",
+      "mapTitleOffice": "{office} दर्शाता नक्शा",
+      "office": "कार्यालय",
       "openMap": "नक्शे में खोलें",
       "social": "ऑनलाइन जुड़ें",
       "grievanceTitle": "आधिकारिक शिकायतें",
