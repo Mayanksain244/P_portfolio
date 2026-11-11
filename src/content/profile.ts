@@ -15,10 +15,22 @@ export type Posting = {
   lng: number;
 };
 
+export type SocialPlatform =
+  | "linkedin"
+  | "facebook"
+  | "x"
+  | "instagram"
+  | "youtube"
+  | "whatsapp"
+  | "email"
+  | "phone";
+
 export type SocialLink = {
-  id: string;
-  label: Localized;
-  href: string;
+  platform: SocialPlatform;
+  /** Full URL; for email/phone a bare address or number is also accepted. */
+  url: string;
+  /** Optional accessible name; defaults to the platform name. */
+  label?: string;
 };
 
 export type Portrait = {
@@ -123,5 +135,13 @@ export const profile: Profile = {
       lng: 78.612,
     },
   ],
+  // Owner will provide the links. Leave empty to hide every social block.
+  // Example (replace the values, then uncomment):
+  // social: [
+  //   { platform: "linkedin", url: "https://www.linkedin.com/in/your-handle" },
+  //   { platform: "whatsapp", url: "https://wa.me/91XXXXXXXXXX" }, // click-to-chat: country code + digits, no + or spaces
+  //   { platform: "email", url: "mailto:name@example.com" },
+  //   { platform: "phone", url: "tel:+91XXXXXXXXXX", label: "Call the office" },
+  // ],
   social: [],
 };

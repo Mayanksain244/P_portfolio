@@ -81,7 +81,66 @@
   },
   "contact": {
     "title": "Get in Touch",
-    "intro": "Questions, collaboration or official correspondence are welcome."
+    "intro": "Questions, collaboration or official correspondence are welcome.",
+    "formNo": "FORM No. SSS/01 · INQUIRY",
+    "formTitle": "Site inquiry form",
+    "formHint": "Fields marked * are required.",
+    "required": "required",
+    "optional": "optional",
+    "fields": {
+      "name": "Full name",
+      "email": "Email address",
+      "phone": "Phone",
+      "purpose": "Purpose of enquiry",
+      "subject": "Subject",
+      "message": "Your message",
+      "consent": "Consent"
+    },
+    "hints": {
+      "phone": "Digits, spaces, + and - only",
+      "message": "At least {min} characters"
+    },
+    "purposes": {
+      "general": "General query",
+      "work": "Public work in my area",
+      "media": "Media & press",
+      "personal": "Personal",
+      "other": "Other"
+    },
+    "counter": "{count} / {max} characters",
+    "consent": "I agree that my details may be used to reply to this enquiry.",
+    "submit": "Send message",
+    "sending": "Sending…",
+    "errorsSummary": "Please correct the highlighted fields.",
+    "errors": {
+      "name": "Please enter your name (2 to 80 characters).",
+      "email": "Please enter a valid email address.",
+      "phone": "Enter a valid phone number (7 to 15 digits; spaces, + and - allowed).",
+      "purpose": "Please choose the purpose of your enquiry.",
+      "subject": "Subject can be at most 120 characters.",
+      "messageShort": "Please write at least 20 characters so we can help.",
+      "messageLong": "Message can be at most 2000 characters.",
+      "consent": "Please tick the box to agree.",
+      "links": "Please remove some links (at most 3 are allowed).",
+      "rateLimit": "Too many messages from your connection. Please try again later.",
+      "server": "Sorry, we could not send your message just now. Please try again in a few minutes.",
+      "notReady": "The form is still loading. Please wait a moment and try again."
+    },
+    "stamp": {
+      "received": "RECEIVED",
+      "thanks": "Thank you — your message has been received.",
+      "reference": "Reference no.",
+      "sendAnother": "Send another"
+    },
+    "card": {
+      "title": "Contact details",
+      "posting": "Current posting",
+      "mapTitle": "Map showing {place}, {district}",
+      "openMap": "Open in map",
+      "social": "Find me online",
+      "grievanceTitle": "Official grievances",
+      "grievance": "For official complaints or grievances about public works, please use the Uttarakhand CM Helpline <helpline>1905</helpline> or the PWD Uttarakhand grievance channels. This form is for general and personal enquiries."
+    }
   },
   "comingSoon": {
     "label": "Sheet status",
@@ -91,7 +150,6 @@
   "footer": {
     "quickLinks": "Quick links",
     "social": "Social",
-    "socialSoon": "Social links coming soon",
     "rights": "All rights reserved."
   },
   "notFound": {
@@ -167,5 +225,18 @@
     "previous": "Previous photo",
     "next": "Next photo",
     "counter": "{current} / {total}"
+  },
+  "social": {
+    "newTab": "(opens in new tab)",
+    "platforms": {
+      "linkedin": "LinkedIn",
+      "facebook": "Facebook",
+      "x": "X (Twitter)",
+      "instagram": "Instagram",
+      "youtube": "YouTube",
+      "whatsapp": "WhatsApp",
+      "email": "Email",
+      "phone": "Phone"
+    }
   }
 }

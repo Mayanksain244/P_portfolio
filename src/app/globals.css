@@ -372,3 +372,93 @@ html[lang="hi"] .diary-stamp {
     animation: none;
   }
 }
+
+/* ---------- Contact: "site inquiry form" ---------- */
+.form-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-variant-caps: all-small-caps;
+  color: var(--muted);
+}
+html[lang="hi"] .form-label {
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  font-variant-caps: normal;
+}
+/* Writing on a form line: bottom border only, marigold underline on focus. */
+.form-line {
+  display: block;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.125rem;
+  background: transparent;
+  color: var(--foreground);
+  border: 0;
+  border-bottom: 1.5px solid color-mix(in srgb, var(--foreground) 55%, transparent);
+  border-radius: 0;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.form-line:focus {
+  border-bottom-color: var(--color-marigold);
+  box-shadow: 0 2px 0 0 var(--color-marigold);
+}
+.form-line:focus-visible {
+  /* keep the global focus ring (outline) and add the thick underline */
+  box-shadow: 0 0 0 2px var(--color-navy), 0 3px 0 0 var(--color-marigold);
+}
+.form-line[aria-invalid="true"] {
+  border-bottom-color: #b3261e;
+}
+:root[data-theme="dark"] .form-line[aria-invalid="true"] {
+  border-bottom-color: #ff8a80;
+}
+.form-line::placeholder {
+  color: color-mix(in srgb, var(--foreground) 45%, transparent);
+}
+textarea.form-line {
+  resize: vertical;
+  min-height: 9rem;
+  line-height: 1.6;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0 1.55rem,
+    var(--rule) 1.55rem 1.6rem
+  );
+  background-size: 100% 1.6rem;
+}
+.field-error {
+  color: #b3261e;
+}
+:root[data-theme="dark"] .field-error {
+  color: #ff9d94;
+}
+
+/* RECEIVED rubber stamp */
+@keyframes stamp-down {
+  0% {
+    opacity: 0;
+    transform: rotate(-14deg) scale(2.2);
+  }
+  60% {
+    opacity: 1;
+    transform: rotate(-6deg) scale(0.94);
+  }
+  100% {
+    opacity: 0.95;
+    transform: rotate(-6deg) scale(1);
+  }
+}
+.stamp {
+  display: inline-block;
+  transform: rotate(-6deg);
+  opacity: 0.95;
+  animation: stamp-down 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .stamp {
+    animation: none;
+  }
+}

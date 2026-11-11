@@ -8,8 +8,16 @@
 - [x] Phase 4: Admin panel built and pushed as 7697e9f (2026-11-11). It passes 74 tests, lint and the build.
   - The HTTP smoke test passes: redirects, wrong and right password, tampered cookie.
   - Real server actions ran against the live DB, covering the full album and photo lifecycle, and cleaned up after themselves.
-- [ ] Owner: run `supabase/migrations/0002_rate_limits.sql` in the SQL Editor (until then the login rate limit fails open)
-- [ ] Owner: set the real admin password with `node scripts/hash-password.mjs`, then paste the hash into `.env.local`, escaping each `$` as `\$`
+- [x] Migration 0002 (`rate_limits`) is live; the Phase 5 test confirmed the table exists.
+- [x] Phase 5 (2026-11-11), reviewed in the browser, 114 tests and the build pass:
+  - contact form (anti-spam: honeypot, HMAC form token, 3/hour rate limit, URL cap)
+  - Gmail mailer, plus a map card and the CM Helpline 1905 note
+  - `SocialLinks`, the favicon, and `hash-password --write`
+- [ ] Owner: Gmail App Password (`GMAIL_USER`, `GMAIL_APP_PASSWORD`, `CONTACT_TO`) in `.env.local` and Vercel. Then test a real email send.
+- [ ] Owner: social media links, to add to `profile.social`
+- [x] Local admin password set (2026-11-11). It's only 6 digits, so **choose a stronger one before going live**.
+- [x] `scripts/hash-password.mjs --write` added (writes the escaped hash and verifies it through `@next/env`)
+- [x] Favicon (`src/app/icon.svg`, `apple-icon.png`)
 - [ ] Browser walkthrough of the admin panel (the owner logs in; the PM reviews the upload pipeline, drag-and-drop and mobile layout)
 - [x] Hero portrait, About data sheet and OG image: reviewed in the browser on 2026-11-11 (desktop, 375px, EN and HI, light and dark)
 - [x] Hydration and 500 check: the errors were stale (rounding was already in place, and the 500 was a one-off from a dev-server hot reload). Added a rounding test.

@@ -110,7 +110,20 @@ See `.env.example`.
   - The DB migration is reviewed; the owner still has to run it in the SQL Editor. Run the smoke test after that.
 - Phase 3 DB is live (the smoke test passed 22/22).
 - Phase 4 (Admin) is built and pushed as 7697e9f. Still to do: a browser walkthrough of the client-side upload, and the owner running migration 0002.
-- Next: Phase 5 (Contact form + Gmail), which reuses `src/lib/rateLimit.ts` `checkAndRecord`.
+- Phase 5 (Contact) is done and reviewed on 2026-11-11. Email sending waits on the owner's Gmail App Password.
+- Next: Phase 6 (real content and images from the owner), then Phase 7 (QA, security hardening, launch).
+
+## Code map (Phase 5)
+- **Contact:**
+  - `src/lib/contact/{schema,antispam,emailTemplate}.ts`, `src/lib/mailer.ts` (server-only), `src/app/[locale]/contact/actions.ts` (`submitContact`, `issueFormToken`).
+  - Components: `ContactForm`, `ContactCard` (OSM map of Dugadda, CM Helpline 1905) and `SocialLinks`.
+- **Anti-spam order:** honeypot → HMAC form token (3s to 2h old) → zod → URL cap (≤ 3) → rate limit (`contact`, 3 per hour per hashed IP).
+- **Behaviour:**
+  - Messages are saved to `messages` first, then emailed via Gmail SMTP with reply-to set to the sender.
+  - **There is never an auto-reply to the sender**, so the form can't be used as a spam relay.
+  - If the Gmail env vars are missing, the email is skipped with a warning.
+- **Social links:** `profile.social` is `{platform, url, label?}[]`. When it's empty, the Social sections are hidden.
+- **Admin password:** `node scripts/hash-password.mjs "<pw>" --write` sets the escaped hash in `.env.local` and verifies it.
 
 ## Code map (Phase 4)
 - **Auth:**
