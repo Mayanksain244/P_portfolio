@@ -1,0 +1,180 @@
+/* Admin panel: calm "drawing office" controls on the Himalayan Blueprint tokens. */
+:root {
+  --adm-field: #fffdf8;
+  --adm-field-border: rgba(15, 42, 68, 0.35);
+  --adm-card: #fffdf8;
+  --adm-danger: #a32d1f;
+  --adm-ok: #2f5a4a;
+}
+:root[data-theme="dark"] {
+  --adm-field: #0a1c2e;
+  --adm-field-border: rgba(244, 239, 230, 0.4);
+  --adm-card: #143452;
+  --adm-danger: #ff8c7a;
+  --adm-ok: #8fd1b4;
+}
+
+.adm-card {
+  background: var(--adm-card);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+}
+
+.adm-label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.adm-hint {
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+.adm-err {
+  font-size: 0.875rem;
+  color: var(--adm-danger);
+}
+
+.adm-input {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  font: inherit;
+  font-size: 1rem; /* >=16px stops iOS zoom on focus */
+  color: var(--foreground);
+  background: var(--adm-field);
+  border: 1.5px solid var(--adm-field-border);
+  border-radius: 4px;
+}
+textarea.adm-input {
+  min-height: 6rem;
+  resize: vertical;
+}
+.adm-input[aria-invalid="true"] {
+  border-color: var(--adm-danger);
+}
+
+.adm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+  padding: 0.5rem 1.1rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  line-height: 1.2;
+  cursor: pointer;
+  color: var(--foreground);
+  background: transparent;
+  border: 1.5px solid var(--adm-field-border);
+  border-radius: 4px;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+.adm-btn:hover:not(:disabled) {
+  background: var(--surface);
+}
+.adm-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.adm-btn-primary {
+  background: var(--color-marigold);
+  border-color: var(--color-marigold);
+  color: var(--color-navy);
+}
+.adm-btn-primary:hover:not(:disabled) {
+  background: #ecb73d;
+}
+.adm-btn-danger {
+  color: var(--adm-danger);
+  border-color: var(--adm-danger);
+}
+.adm-btn-danger-solid {
+  background: #a32d1f;
+  border-color: #a32d1f;
+  color: #fff;
+}
+.adm-btn-danger-solid:hover:not(:disabled) {
+  background: #8a2417;
+}
+.adm-btn-sm {
+  min-height: 2.5rem;
+  min-width: 2.5rem;
+  padding: 0.25rem 0.7rem;
+  font-size: 0.875rem;
+}
+
+.adm-badge {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 3px;
+  border: 1px solid currentColor;
+}
+.adm-badge-live {
+  color: var(--adm-ok);
+}
+.adm-badge-draft {
+  color: var(--muted);
+}
+
+/* Switch */
+.adm-switch {
+  position: relative;
+  flex: none;
+  width: 3.25rem;
+  height: 1.9rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--adm-field-border);
+  background: var(--adm-field);
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+.adm-switch::after {
+  content: "";
+  position: absolute;
+  top: 0.2rem;
+  left: 0.22rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background: var(--muted);
+  transition: transform 0.15s, background-color 0.15s;
+}
+.adm-switch[aria-checked="true"] {
+  background: var(--color-pine);
+  border-color: var(--color-pine);
+}
+.adm-switch[aria-checked="true"]::after {
+  transform: translateX(1.3rem);
+  background: #fff;
+}
+.adm-switch:disabled {
+  opacity: 0.5;
+}
+
+dialog.adm-dialog {
+  margin: auto;
+  width: min(32rem, calc(100vw - 2rem));
+  padding: 1.25rem;
+  color: var(--foreground);
+  background: var(--adm-card);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+}
+dialog.adm-dialog::backdrop {
+  background: rgba(10, 28, 46, 0.65);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .adm-switch,
+  .adm-switch::after,
+  .adm-btn {
+    transition: none;
+  }
+}

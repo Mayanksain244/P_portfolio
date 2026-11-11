@@ -4,7 +4,13 @@ import { defineConfig } from "vitest/config";
 
 export default defineConfig({
   plugins: [react()],
-  resolve: { alias: { "@": path.resolve(import.meta.dirname, "src") } },
+  resolve: {
+    alias: {
+      "@": path.resolve(import.meta.dirname, "src"),
+      // "server-only" throws outside the Next server bundle; stub it for unit tests.
+      "server-only": path.resolve(import.meta.dirname, "src/__tests__/stubs/server-only.ts"),
+    },
+  },
   // Component tests opt in to jsdom with `// @vitest-environment jsdom`.
   test: {
     environment: "node",

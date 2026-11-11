@@ -124,6 +124,11 @@ See `.env.example`.
 - **Gotcha:** `npm run build` overwrites `.next`, which breaks a running `npm run dev`. Stop the dev server before building, or have subagents use `tsc --noEmit` instead.
 
 ## Decisions log
+- 2026-11-11 (Phase 4 design):
+  - **Admin is English-only at `/admin`, with its own root layout.** It uses a fixed username plus a bcrypt hash and a jose JWT cookie (8h, `sameSite` strict). The middleware guards the pages, and **every server action calls `requireAdmin()`**.
+  - **Login rate limit:** stored in the Supabase `rate_limits` table (migration 0002), not in memory. It allows 5 failures per 15 minutes per hashed IP, and Phase 5 reuses it for the contact form.
+  - **Uploads:** photos are resized on the client to a max of 2400px WebP and EXIF-rotated, then uploaded straight to Supabase through a signed upload URL. This avoids Vercel's 4.5MB body limit.
+  - **Grouping:** category → album → tags. The UI is designed to be usable on a phone at a site (camera upload).
 - 2026-11-11 (Phase 2): The Uttarakhand map is cropped to the western part of the state, where all the postings are. The India inset shows the whole state. In light mode the route uses a darker marigold (`#9c6a0b`) for contrast. The Hindi short designation uses "लोनिवि", the standard abbreviation, which the owner should confirm.
 - 2026-11-11 (Phase 2 review): The DimensionDivider titles are too small in Hindi, because the small caps are dropped and the text shrinks; increase the size for `lang=hi`. The map attribution is still in English on `/hi`; translate it. Both are queued for Phase 3.
 - 2026-11-11 (Phase 1 review): In dark mode the hero and the page body are both navy, so the sections blend together. Fix in Phase 2: use `navy-900` for the hero (or `surface` bands for alternate sections) and raise the contrast of the DimensionDivider title and lines in dark mode. Also add a navy inner ring to the marigold focus outline on paper, because marigold on paper is only about 2:1 contrast.
